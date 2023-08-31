@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: YugabyteDB JPA Starter
+  datasource:
+    driver-class-name: ${DATASOURCE_DRIVER_CLASS_NAME:com.yugabyte.Driver}
+    url: ${DATASOURCE_URL:jdbc:yugabytedb://localhost:5433/yugabyte?load-balance=true}
+    #?load-balance=true&topology-keys=gcp.us-east1.*:1,gcp.us-central1.*:2,gcp.us-west1.*:3
+    username: ${DATASOURCE_USERNAME:yugabyte}
+    password: ${DATASOURCE_PASSWORD:}
+    hikari:
+      maximum-pool-size: ${HIKARI_MAXIMUM_POOL_SIZE:10}
+      minimum-idle: ${HIKARI_MINIMUM_IDLE:10}
+      idle-timeout: ${HIKARI_IDLE_TIMEOUT:0}
+      max-lifetime: ${HIKARI_MAX_LIFETIME:14400000} # 4h
+      keepalive-time: ${HIKARI_KEEPALIVE_TIME:900000} # 15m
+      transaction-isolation: ${HIKARI_TRANSACTION_ISOLATION:TRANSACTION_READ_COMMITTED}
+      connection-init-sql: ${HIKARI_CONNECTION_INIT_SQL:}
+      data-source-properties:
+        socketTimeout: ${YSQL_SOCKET_TIMEOUT:10} # default 0s
+        connectTimeout: ${YSQL_CONNECT_TIMEOUT:10} # default 10s
+        loginTimeout: ${YSQL_LOGIN_TIMEOUT:0} # default 0s
+        options: ${YSQL_OPTIONS:-c statement_timeout=8s}
+        prepareThreshold: ${YSQL_PREPARE_THRESHOLD:1}
+  jpa:
+    open-in-view: ${JPA_OPEN_IN_VIEW:false}
+    hibernate:
+      ddl-auto: ${HIBERNATE_DDL_AUTO:none}
+    properties:
+      hibernate:
+        default_schema: ${HIBERNATE_DEFAULT_SCHEMA:yugabyte}
+        generate_statistics: ${HIBERNATE_GENERATE_STATISTICS:false}
+        use_sql_comments: ${HIBERNATE_USER_SQL_COMMENTS:false}
+        order_inserts: ${HIBERNATE_ORDER_INSERTS:true}
+        order_updates: ${HIBERNATE_ORDER_UPDATES:true}
+        connection.handling_mode: ${HIBERNATE_CONNECTION_HANDLING_MODE:DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION}
+  #        temp:
+  #          use_jdbc_metadata_defaults: false <-- todo requires dialect to be specified
+  #        jdbc:
+  #          batch_size: ${HIBERNATE_BATCH_SIZE:50}
+  #          use_scrollable_resultset: true
+  #          use_get_generated_keys: true
+  flyway:
+    default-schema: ${FLYWAY_DEFAULT_SCHEMA:yugabyte}
+
+server:
+  error:
+    include-stacktrace: never # override devtools behavior
+
+logging.level:
+  com.zaxxer.hikari: ${HIKARI_LOG_LEVEL:TRACE}
+  com.zaxxer.hikari.HikariConfig: ${HIKARI_CONFIG_LOG_LEVEL:DEBUG}
+  com.yugabyte: ${YSQL_LOG_LEVEL:INFO}
+  com.yugabyte.Driver: ${YSQL_DRIVER_LOG_LEVEL:TRACE}
+  org.hibernate.SQL: ${HIBERNATE_SQL_LOG_LEVEL:DEBUG}
+  org.hibernate.cfg: ${HIBERNATE_CONFIG_LOG_LEVEL:DEBUG}
+  org.hibernate.type.descriptor.sql: ${HIBERNATE_SQL_PARAMS_LOG_LEVEL:TRACE}

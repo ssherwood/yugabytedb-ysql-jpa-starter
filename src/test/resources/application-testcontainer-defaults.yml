@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    url: jdbc:tc:yugabyte:2.18.2.1-b1:///yugabyte
+    driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver
