@@ -1,4 +1,10 @@
-## Add "k8s" profile for Kubernetes environments
+##
+## Profile for Kubernetes environments
+##
+## This profile enables liveness and readiness probes for Kubernetes and exposes both the health and
+## Prometheus endpoint (the later should be secured to not be exposed publicly).
+##
+
 management:
   endpoint:
     health.probes.enabled: true

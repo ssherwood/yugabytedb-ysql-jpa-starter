@@ -1,7 +1,17 @@
+###
+### Profile for use when doing local development
+###
+### Typically, just add "local" to the Active Profiles of the Run/Debug profile of the IDE.
+###
+
 spring:
   security:
     user:
       password: local
+
+server:
+  error:
+    include-stacktrace: always
 
 management:
   endpoints:
