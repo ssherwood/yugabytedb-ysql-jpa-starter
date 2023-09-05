@@ -46,6 +46,7 @@ server:
   error:
     include-stacktrace: never # override devtools behavior
 
+# TODO copy/move most of these to local
 logging.level:
   com.zaxxer.hikari: ${HIKARI_LOG_LEVEL:TRACE}
   com.zaxxer.hikari.HikariConfig: ${HIKARI_CONFIG_LOG_LEVEL:DEBUG}

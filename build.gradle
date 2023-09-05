@@ -39,7 +39,7 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
-    runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'org.postgresql:postgresql' // exclude once Hibernate dialect is complete
     runtimeOnly "com.yugabyte:jdbc-yugabytedb:${yugabyteDriverVersion}"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

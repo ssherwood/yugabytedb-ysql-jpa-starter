@@ -3,11 +3,17 @@
 ## YugabyteDB: YSQL via JPA
 
 This is a basic Spring Boot project for anyone wanting to get started quickly
-with YugabyteDB using YSQL via JPA (Hibernate).  The project has minimal code
-and configuration but is still robust enough to make getting started with a
-real production-ready project very easy.
+with YugabyteDB using YSQL via JPA (Hibernate).  If you are not interested in
+using JPA, an alternate starter with JDBC is also available (TODO).
+
+This project has minimal code and configuration but is still robust enough to
+make getting started with a real production-ready project very easy.
 
 This project was initialized with:
+
+* Spring Boot: 3.1.3
+* Java: 17
+* Gradle
 
 * -web
 * -data-jpa
@@ -17,9 +23,7 @@ This project was initialized with:
 * -testcontainers
 * flyway
 
-## Primary Component Versions
+## Additional Component Versions
 
-* Java: 17
-* Spring Boot: 3.1.3
-* YugabyteDB YSQL Smart Driver: 42.3.5-yb-3
-* YugabyteDB Testcontainer: yugabytedb/yugabyte:2.18.2.1-b1
+* YSQL Smart Driver: 42.3.5-yb-3
+* Testcontainer: yugabytedb/yugabyte:2.18.2.1-b1

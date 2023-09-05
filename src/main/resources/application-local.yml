@@ -1,18 +1,23 @@
 ###
-### Profile for use when doing local development
+### Profile for use when doing local development.
 ###
-### Typically, just add "local" to the Active Profiles of the Run/Debug profile of the IDE.
+### In IntelliJ, just add "local" to the Active Profiles of the Run/Debug profile of the IDE.
 ###
 
 spring:
+  flyway:
+    locations: classpath:db/migration,classpath:db/testing
   security:
     user:
+      name: local
       password: local
 
+# Allow devtools to put full stack traces in REST response body (local only!)
 server:
   error:
     include-stacktrace: always
 
+# Enable all Actuator endpoints when running locally
 management:
   endpoints:
     web:
