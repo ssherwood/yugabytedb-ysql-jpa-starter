@@ -10,7 +10,7 @@ class ApplicationTests {
 
 	@Test
 	void contextLoads() {
-		// TODO this is an expensive "noting" test
+		// TODO this is an expensive "nothing" test because it launches a test container
 	}
 
 }

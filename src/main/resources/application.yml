@@ -1,6 +1,6 @@
 spring:
   application:
-    name: YugabyteDB YSQL JPA Starter
+    name: YugabyteDB YSQL (JPA) Starter
   datasource:
     driver-class-name: ${DATASOURCE_DRIVER_CLASS_NAME:com.yugabyte.Driver}
     url: ${DATASOURCE_URL:jdbc:yugabytedb://localhost:5433/yugabyte?load-balance=true}

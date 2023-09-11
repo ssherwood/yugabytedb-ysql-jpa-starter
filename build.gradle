@@ -22,9 +22,10 @@ repositories {
 }
 
 ext {
-    set('testcontainersVersion', "1.18.3")
-    set('yugabyteDriverVersion', "42.3.5-yb-3")
-    set('flywayTestExtensionsVersion', "9.5.0")
+    set('hypersistenceUtilsVersion', '3.5.2')
+    set('testcontainersVersion', '1.18.3')
+    set('yugabyteDriverVersion', '42.3.5-yb-3')
+    set('flywayTestExtensionsVersion', '9.5.0')
 }
 
 dependencies {
@@ -35,12 +36,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.flywaydb:flyway-core'
+    implementation "io.hypersistence:hypersistence-utils-hibernate-62:${hypersistenceUtilsVersion}"
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
-    runtimeOnly 'org.postgresql:postgresql' // exclude once Hibernate dialect is complete
     runtimeOnly "com.yugabyte:jdbc-yugabytedb:${yugabyteDriverVersion}"
+    runtimeOnly 'org.postgresql:postgresql'
+    // ^ remove once YugabyteDB dialect is available: https://github.com/yugabyte/yugabyte-db/issues/17678
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'

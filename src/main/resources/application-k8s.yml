@@ -1,8 +1,8 @@
 ##
-## Profile for Kubernetes environments
+## Profile for Kubernetes (k8s) environments.
 ##
 ## This profile enables liveness and readiness probes for Kubernetes and exposes both the health and
-## Prometheus endpoint (the later should be secured to not be exposed publicly).
+## Prometheus endpoint (these should be secured and not be exposed publicly).
 ##
 
 management:
