@@ -43,7 +43,9 @@ dependencies {
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     runtimeOnly "com.yugabyte:jdbc-yugabytedb:${yugabyteDriverVersion}"
 
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher' // See https://docs.gradle.org/8.3/userguide/upgrading_version_8.html#test_framework_implementation_dependencies
+    // see https://github.com/spring-io/initializr/issues/1476
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // ^ expect to see this handled in Spring Boot soon
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'
