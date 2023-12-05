@@ -1,6 +1,6 @@
 spring:
   application:
-    name: YugabyteDB YSQL (JPA) Starter
+    name: YSQL_JPA_Starter
   datasource:
     driver-class-name: ${DATASOURCE_DRIVER_CLASS_NAME:com.yugabyte.Driver}
     url: ${DATASOURCE_URL:jdbc:yugabytedb://127.0.0.1,127.0.0.2,127.0.0.3:5433/yugabyte?load-balance=true&topology-keys=cloud1.datacenter1.*:1,cloud1.datacenter2.*:2,cloud1.datacenter3.*:3}
@@ -39,7 +39,15 @@ spring:
   #          use_scrollable_resultset: true
   #          use_get_generated_keys: true
   flyway:
-    default-schema: ${FLYWAY_DEFAULT_SCHEMA:yugabyte}
+    default-schema: ${DATABASE_SCHEMA:yugabyte}
+    user: ${FLYWAY_USERNAME:yugabyte}
+    password: ${FLYWAY_PASSWORD:}
+    baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:false}
+  retry:
+    max-attempts: ${YSQL_RETRY_MAX_ATTEMPTS:5}
+    backoff-initial-interval: ${YSQL_BACKOFF_INIT_INTERVAL_MS:2}
+    backoff-multiplier: ${YSQL_BACKOFF_MULTIPLIER_MS:8}
+    backoff-max-interval: ${YSQL_BACKOFF_MAX_INTERVAL_MS:3000}
 
 server:
   error:
@@ -54,3 +62,4 @@ logging.level:
   org.hibernate.SQL: ${HIBERNATE_SQL_LOG_LEVEL:DEBUG}
   org.hibernate.cfg: ${HIBERNATE_CONFIG_LOG_LEVEL:DEBUG}
   org.hibernate.type.descriptor.sql: ${HIBERNATE_SQL_PARAMS_LOG_LEVEL:TRACE}
+  org.springframework.retry.support.RetryTemplate: ${SPRING_RETRY_LOG:DEBUG}

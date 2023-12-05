@@ -54,6 +54,11 @@ public class FlywayMigrationTests {
     @Order(1)
     void runMigration_SelectCountFromFlywaySchemaHistory() throws Exception {
 
+        // determine if any migrations tripped breaking version
+        // refer to src/main/resources/db/migration/README.md
+        var breakingVersion = template.queryForObject("select last_breaking_version from pg_yb_catalog_version;", Integer.class);
+        assertThat("Flyway Migration contained a catalog breaking feature!", breakingVersion, is(1));
+
         // count the number of successful migrations in the flyway_schema_history table
         // this should match the number of migration files in db/migration plus db/testing (as included above)
         var migrationCount = template.queryForObject("select count(*) from flyway_schema_history where success = true", Integer.class);
