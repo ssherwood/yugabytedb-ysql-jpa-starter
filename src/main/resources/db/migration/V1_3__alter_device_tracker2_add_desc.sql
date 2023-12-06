@@ -12,6 +12,6 @@
 -- cost of some additional latency.
 --
 
-ALTER TABLE yb_device_tracker2 add column description text;
+ALTER TABLE yb_device_tracker2 add column description text DEFAULT 'FOO';
 
 UPDATE yb_device_tracker2 set description = 'DEFAULT';

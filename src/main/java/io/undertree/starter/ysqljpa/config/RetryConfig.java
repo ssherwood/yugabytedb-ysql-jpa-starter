@@ -26,14 +26,8 @@ public class RetryConfig {
     // 40P01 - deadlock
     // 08006 - connection issues
     // 57P01 - broken pool conn (invalidated connections because of node failure, etc.)
-    // XX000 - other connection related issues (not classified)
-    private static final Pattern SQL_STATE_PATTERN = Pattern.compile("^(40001)|(40P01)|(57P01)|(08006)|(XX000)");
-
-//    private final RetryConfigProperties retryProperties;
-//
-//    public RetryConfig(RetryConfigProperties retryProperties) {
-//        this.retryProperties = retryProperties;
-//    }
+    // XX000 - other connection related issues (not classified) <- removed as not explicitly retryable
+    private static final Pattern SQL_STATE_PATTERN = Pattern.compile("^(40001)|(40P01)|(57P01)|(08006)");
 
     /**
      * Configures a Spring Retry Backoff policy based on a randomized exponential backoff.
