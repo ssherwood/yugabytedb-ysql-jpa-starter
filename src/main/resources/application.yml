@@ -32,6 +32,7 @@ spring:
         order_inserts: ${HIBERNATE_ORDER_INSERTS:true}
         order_updates: ${HIBERNATE_ORDER_UPDATES:true}
         connection.handling_mode: ${HIBERNATE_CONNECTION_HANDLING_MODE:DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION}
+        # ^^^ TODO this breaks read only semantics
   #        temp:
   #          use_jdbc_metadata_defaults: false <-- todo requires dialect to be specified
   #        jdbc:
@@ -43,6 +44,12 @@ spring:
     user: ${FLYWAY_USERNAME:yugabyte}
     password: ${FLYWAY_PASSWORD:}
     baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:false}
+    mixed: true
+    placeholders:
+      env: qa
+      ybIndexMode: concurrently
+      deviceCount: 5000
+      mediaPerDeviceCount: 60
   retry:
     max-attempts: ${YSQL_RETRY_MAX_ATTEMPTS:5}
     backoff-initial-interval: ${YSQL_BACKOFF_INIT_INTERVAL_MS:2}

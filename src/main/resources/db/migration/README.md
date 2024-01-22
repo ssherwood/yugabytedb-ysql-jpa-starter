@@ -42,7 +42,7 @@ default (CONCURRENTLY) will generally work since the three phases will not compl
 immediately due to the backfill itself taking some time. However, if concerned about
 it being too fast, you can force a delay to the process using:
 
-```postgresql
+```sql
 set yb_index_state_flags_update_delay to 10000; -- use a large enough delay for the app
 ```
 
@@ -70,7 +70,7 @@ RENAME). DROP and REVOKE commands are also generally considered catalog breaking
 To determine for sure if a DDL command is breaking, test it out by first looking at the
 `last_breaking_version` in the `pg_yb_catalog_version` table:
 
-```postgresql
+```sql
 select *
 from pg_yb_catalog_version;
 ```
@@ -81,7 +81,7 @@ changes, then the command is considered breaking and care should be used.
 In cases where it is known that the effect of the command run is not disruptive to any active
 connections, it is possible to preface the command with:
 
-```postgresql
+```sql
 set yb_make_next_ddl_statement_nonbreaking = true;
 ```
 
@@ -93,6 +93,6 @@ active connections to fail if the change would go unacknowledged.
 Examples:
 
 - Adding a column to an existing table with a constraint or default value.
-    - Risks: in-flight transactions may violate constraint and/or miss default.
-    - Remediation: table can be checked and manually patch any affected rows.
+  - Risks: in-flight transactions may violate constraint and/or miss default.
+  - Remediation: table can be checked and manually patch any affected rows.
 - Removing or renaming an existing table or column currently being used by the application.

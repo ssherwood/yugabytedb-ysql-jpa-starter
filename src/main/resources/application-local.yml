@@ -1,9 +1,13 @@
 ###
 ### Profile for use when doing local development.
 ###
-### In IntelliJ, just add "local" to the Active Profiles of the Run/Debug profile of the IDE.
+### In IntelliJ, just add "local" to the Active Profiles of the Run/Debug
+### profile of the IDE.
 ###
 
+# Add db/testing path for additional migration scripts, presumable for loading
+# repeatable test data.
+# Sets default user to local/local
 spring:
   flyway:
     locations: classpath:db/migration,classpath:db/testing
