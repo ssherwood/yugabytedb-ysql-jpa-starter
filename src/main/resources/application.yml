@@ -31,7 +31,7 @@ spring:
         use_sql_comments: ${HIBERNATE_USER_SQL_COMMENTS:false}
         order_inserts: ${HIBERNATE_ORDER_INSERTS:true}
         order_updates: ${HIBERNATE_ORDER_UPDATES:true}
-        connection.handling_mode: ${HIBERNATE_CONNECTION_HANDLING_MODE:DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION}
+        #connection.handling_mode: ${HIBERNATE_CONNECTION_HANDLING_MODE:DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION}
         # ^^^ TODO this breaks read only semantics
   #        temp:
   #          use_jdbc_metadata_defaults: false <-- todo requires dialect to be specified
