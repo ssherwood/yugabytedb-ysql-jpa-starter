@@ -43,7 +43,7 @@ spring:
   #          use_scrollable_resultset: true
   #          use_get_generated_keys: true
   flyway:
-    default-schema: ${DATABASE_SCHEMA:yugabyte}
+    #default-schema: ${DATABASE_SCHEMA:yugabyte}
     user: ${FLYWAY_USERNAME:yugabyte}
     password: ${FLYWAY_PASSWORD:}
     baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:false}
