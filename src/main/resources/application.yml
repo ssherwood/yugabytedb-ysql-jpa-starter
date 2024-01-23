@@ -2,8 +2,8 @@ spring:
   application:
     name: YSQL_JPA_Starter
   datasource:
+    url: ${DATASOURCE_URL:jdbc:yugabytedb://localhost:5433/yugabyte}
     driver-class-name: ${DATASOURCE_DRIVER_CLASS_NAME:com.yugabyte.Driver}
-    url: ${DATASOURCE_URL:jdbc:yugabytedb://127.0.0.1,127.0.0.2,127.0.0.3:5433/yugabyte?load-balance=true&topology-keys=cloud1.datacenter1.*:1,cloud1.datacenter2.*:2,cloud1.datacenter3.*:3}
     username: ${DATASOURCE_USERNAME:yugabyte}
     password: ${DATASOURCE_PASSWORD:}
     hikari:
@@ -20,13 +20,16 @@ spring:
         loginTimeout: ${YSQL_LOGIN_TIMEOUT:0} # default 0s
         options: ${YSQL_OPTIONS:-c statement_timeout=8s}
         prepareThreshold: ${YSQL_PREPARE_THRESHOLD:1}
+        load-balance: ${YSQL_LOAD_BALANCE:true}
+        topology-keys: ${YSQL_TOPOLOGY_KEYS:gcp.us-east1.*:1,gcp.us-central1.*:2,gcp.us-west1.*:3}
+        additionalEndpoints: ${YSQL_ADDITIONAL_ENDPOINTS:127.0.0.2:5433,127.0.0.3:5433}
   jpa:
     open-in-view: ${JPA_OPEN_IN_VIEW:false}
     hibernate:
       ddl-auto: ${HIBERNATE_DDL_AUTO:none}
     properties:
       hibernate:
-        default_schema: ${HIBERNATE_DEFAULT_SCHEMA:yugabyte}
+        #default_schema: ${HIBERNATE_DEFAULT_SCHEMA:yugabyte}
         generate_statistics: ${HIBERNATE_GENERATE_STATISTICS:false}
         use_sql_comments: ${HIBERNATE_USER_SQL_COMMENTS:false}
         order_inserts: ${HIBERNATE_ORDER_INSERTS:true}
