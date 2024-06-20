@@ -11,5 +11,5 @@
 
 spring:
   datasource:
-    url: jdbc:tc:yugabyte:2.18.4.2-b2:///yugabyte
+    url: jdbc:tc:yugabyte:2.20.4.0-b50:///yugabyte
     driver-class-name: org.testcontainers.jdbc.ContainerDatabaseDriver

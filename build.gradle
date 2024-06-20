@@ -1,14 +1,16 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.2.0'
-    id 'io.spring.dependency-management' version '1.1.3'
+    id 'org.springframework.boot' version '3.3.1'
+    id 'io.spring.dependency-management' version '1.1.5'
 }
 
 group = 'io.undertree.starter.ysql'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '17'
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 configurations {
@@ -22,10 +24,12 @@ repositories {
 }
 
 ext {
-    set('hypersistenceUtilsVersion', '3.6.1')
-    set('testcontainersVersion', '1.19.3')
-    set('yugabyteDriverVersion', '42.3.5-yb-4')
-    set('flywayTestExtensionsVersion', '9.5.0')
+    set('hypersistenceUtilsVersion', '3.7.6')
+    set('testcontainersVersion', '1.19.4')
+    set('yugabyteDriverVersion', '42.3.5-yb-5')
+    set('flywayCoreVersion', '10.15.0')
+    set('flywayDatabaseYugabyteDBVersion', '10.12.0')
+    set('flywayTestExtensionsVersion', '10.0.0')
 }
 
 dependencies {
@@ -37,8 +41,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.retry:spring-retry'
     implementation 'org.springframework:spring-aspects'
-    implementation 'org.flywaydb:flyway-core'
-    implementation "io.hypersistence:hypersistence-utils-hibernate-62:${hypersistenceUtilsVersion}"
+    implementation "org.flywaydb:flyway-core:${flywayCoreVersion}"
+    implementation "org.flywaydb:flyway-database-yugabytedb:${flywayDatabaseYugabyteDBVersion}"
+    implementation "io.hypersistence:hypersistence-utils-hibernate-63:${hypersistenceUtilsVersion}"
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
@@ -47,7 +52,6 @@ dependencies {
 
     // see https://github.com/spring-io/initializr/issues/1476
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    // ^ expect to see this handled in Spring Boot soon
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-testcontainers'
