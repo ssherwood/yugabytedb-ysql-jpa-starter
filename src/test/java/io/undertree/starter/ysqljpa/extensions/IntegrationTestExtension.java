@@ -4,6 +4,7 @@ import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.testcontainers.containers.YugabyteDBYSQLContainer;
+import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.utility.DockerImageName;
 
 /**
@@ -19,7 +20,8 @@ public class IntegrationTestExtension implements BeforeAllCallback, AfterAllCall
             .withDatabaseName("yugabyte")
             .withUsername("yugabyte")
             .withPassword("yugabyte")
-            .withReuse(true);
+            //.withReuse(true)
+            .waitingFor(Wait.defaultWaitStrategy());
 
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {

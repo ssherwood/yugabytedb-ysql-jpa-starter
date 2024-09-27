@@ -11,8 +11,8 @@ make getting started with a real production-ready project very easy.
 
 This project was initialized with:
 
-* Spring Boot: 3.2.0
-* Java: 17
+* Spring Boot: 3.3.4
+* Java: 21
 * Gradle
 
 * -web
@@ -25,5 +25,5 @@ This project was initialized with:
 
 ## Additional Component Versions
 
-* YSQL Smart Driver: 42.3.5-yb-4
-* Testcontainer: yugabytedb/yugabyte:2.18.4.2-b2
+* YSQL Smart Driver: 42.3.5-yb-7
+* Testcontainer: yugabytedb/yugabyte:yugabyte:2.20.6.0-b66
