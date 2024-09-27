@@ -14,8 +14,12 @@ public class IntegrationTestExtension implements BeforeAllCallback, AfterAllCall
     static final String ENTRYPOINT = "bin/yugabyted start --background=false --tserver_flags=yb_enable_read_committed_isolation=true";
 
     static final YugabyteDBYSQLContainer ysqlDB = new YugabyteDBYSQLContainer(YUGABYTEDB_IMAGE)
+            .withCommand(ENTRYPOINT)
             //.withInitScript()
-            .withCommand(ENTRYPOINT);
+            .withDatabaseName("yugabyte")
+            .withUsername("yugabyte")
+            .withPassword("yugabyte")
+            .withReuse(true);
 
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {

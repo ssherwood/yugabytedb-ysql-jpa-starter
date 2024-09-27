@@ -25,7 +25,7 @@ repositories {
 
 ext {
     set('hypersistenceUtilsVersion', '3.7.6')
-    //set('testcontainersVersion', '1.19.4')
+    set('testcontainersVersion', '1.20.1')
     set('yugabyteDriverVersion', '42.3.5-yb-7')
     set('flywayCoreVersion', '10.16.0')
     set('flywayDatabaseYugabyteDBVersion', '10.16.2')
@@ -58,7 +58,7 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     testImplementation "org.flywaydb.flyway-test-extensions:flyway-spring-test:${flywayTestExtensionsVersion}"
     testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation 'org.testcontainers:yugabytedb'
+    testImplementation "org.testcontainers:yugabytedb:${testcontainersVersion}"
 }
 
 tasks.named('test') {
