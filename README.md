@@ -25,5 +25,5 @@ This project was initialized with:
 
 ## Additional Component Versions
 
-* YSQL Smart Driver: 42.3.5-yb-7
-* Testcontainer: yugabytedb/yugabyte:yugabyte:2.20.6.0-b66
+* YSQL Smart Driver: 42.3.5-yb-6
+* Testcontainer: yugabytedb/yugabyte:yugabyte:2024.1.2.0-b77
