@@ -15,7 +15,7 @@ spring:
       transaction-isolation: ${HIKARI_TRANSACTION_ISOLATION:TRANSACTION_READ_COMMITTED}
       connection-init-sql: ${HIKARI_CONNECTION_INIT_SQL:}
       data-source-properties:
-        currentSchema: ${YSQL_CURRENT_SCHEMA:public}
+        currentSchema: ${YSQL_CURRENT_SCHEMA:test2}
         loginTimeout: ${YSQL_LOGIN_TIMEOUT:0} # default 0s
         connectTimeout: ${YSQL_CONNECT_TIMEOUT:15} # default 10s
         socketTimeout: ${YSQL_SOCKET_TIMEOUT:10} # default 0s
@@ -44,7 +44,7 @@ spring:
   #          use_scrollable_resultset: true
   #          use_get_generated_keys: true
   flyway:
-    #default-schema: ${DATABASE_SCHEMA:yugabyte}
+    default-schema: ${DATABASE_SCHEMA:test2}
     user: ${FLYWAY_USERNAME:yugabyte}
     password: ${FLYWAY_PASSWORD:}
     baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:false}
