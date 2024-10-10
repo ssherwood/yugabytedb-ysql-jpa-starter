@@ -12,7 +12,8 @@ class ApplicationTests {
 
     @Test
     void contextLoads() {
-        // TODO this is a basic Spring "wiring" test and intentionally excludes any datasource configuration
+        // This is a basic Spring bean "wiring" test and intentionally excludes datasource configurations
+        // if this fails, it usually means a configuration error of some kind
     }
 
 }

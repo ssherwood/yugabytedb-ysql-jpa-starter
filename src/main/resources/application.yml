@@ -15,14 +15,14 @@ spring:
       transaction-isolation: ${HIKARI_TRANSACTION_ISOLATION:TRANSACTION_READ_COMMITTED}
       connection-init-sql: ${HIKARI_CONNECTION_INIT_SQL:}
       data-source-properties:
-        currentSchema: ${YSQL_CURRENT_SCHEMA:test2}
+        currentSchema: ${YSQL_CURRENT_SCHEMA:samples}
         loginTimeout: ${YSQL_LOGIN_TIMEOUT:0} # default 0s
         connectTimeout: ${YSQL_CONNECT_TIMEOUT:15} # default 10s
         socketTimeout: ${YSQL_SOCKET_TIMEOUT:10} # default 0s
         options: ${YSQL_OPTIONS:-c statement_timeout=8s}
         prepareThreshold: ${YSQL_PREPARE_THRESHOLD:1}
         additionalEndpoints: ${YSQL_ADDITIONAL_ENDPOINTS:127.0.0.2:5433,127.0.0.3:5433}
-        load-balance: ${YSQL_LOAD_BALANCE:true}
+        load-balance: ${YSQL_LOAD_BALANCE:prefer‑primary}
         topology-keys: ${YSQL_TOPOLOGY_KEYS:gcp.us-east1.*:1,gcp.us-central1.*:2,gcp.us-west1.*:3}
         fallback-to-topology-keys-only: true
   jpa:
@@ -37,6 +37,7 @@ spring:
         order_updates: ${HIBERNATE_ORDER_UPDATES:true}
         #connection.handling_mode: ${HIBERNATE_CONNECTION_HANDLING_MODE:DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION}
         # ^^^ TODO this breaks read only semantics see https://vladmihalcea.com/spring-transaction-connection-management/
+  # todo explain why this section might be useful (see `ddl-auto: validate` causing complex startup queries)
   #        temp:
   #          use_jdbc_metadata_defaults: false <-- todo requires dialect to be specified
   #        jdbc:
@@ -44,7 +45,7 @@ spring:
   #          use_scrollable_resultset: true
   #          use_get_generated_keys: true
   flyway:
-    default-schema: ${DATABASE_SCHEMA:test2}
+    default-schema: ${DATABASE_SCHEMA:samples}
     user: ${FLYWAY_USERNAME:yugabyte}
     password: ${FLYWAY_PASSWORD:}
     baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:false}

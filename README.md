@@ -13,7 +13,7 @@ This project was initialized with:
 
 * Spring Boot: 3.3.4
 * Java: 21
-* Gradle
+* Gradle: 8.10.2
 
 * -web
 * -data-jpa
@@ -25,5 +25,6 @@ This project was initialized with:
 
 ## Additional Component Versions
 
-* YSQL Smart Driver: 42.3.5-yb-6
-* Testcontainer: yugabytedb/yugabyte:yugabyte:2024.1.2.0-b77
+* YSQL Smart Driver: 42.7.3-yb-1
+* Testcontainers: 1.20.2
+  * Using: yugabytedb/yugabyte:yugabyte:2024.1.3.0-b105
