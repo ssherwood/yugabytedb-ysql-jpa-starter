@@ -1,26 +1,29 @@
+##
+## Default Spring profile.
+##
 spring:
-  application:
-    name: YSQL_JPA_Starter
+  application.name: YSQL-JPA-Starter
   datasource:
     url: ${DATASOURCE_URL:jdbc:yugabytedb://127.0.0.1:5433/yugabyte}
     driver-class-name: ${DATASOURCE_DRIVER_CLASS_NAME:com.yugabyte.Driver}
     username: ${DATASOURCE_USERNAME:yugabyte}
     password: ${DATASOURCE_PASSWORD:}
     hikari:
+      minimum-idle: ${HIKARI_MINIMUM_IDLE:10} # always set min=max and idle=0
       maximum-pool-size: ${HIKARI_MAXIMUM_POOL_SIZE:10}
-      minimum-idle: ${HIKARI_MINIMUM_IDLE:10}
       idle-timeout: ${HIKARI_IDLE_TIMEOUT:0}
-      max-lifetime: ${HIKARI_MAX_LIFETIME:14400000} # 4h
-      keepalive-time: ${HIKARI_KEEPALIVE_TIME:900000} # 15m
+      max-lifetime: ${HIKARI_MAX_LIFETIME:21600000} # 6h
+      keepalive-time: ${HIKARI_KEEPALIVE_TIME:600000} # 10m
+      auto-commit: ${HIKARI_AUTO_COMMIT:false}
       transaction-isolation: ${HIKARI_TRANSACTION_ISOLATION:TRANSACTION_READ_COMMITTED}
       connection-init-sql: ${HIKARI_CONNECTION_INIT_SQL:}
       data-source-properties:
         currentSchema: ${YSQL_CURRENT_SCHEMA:samples}
         loginTimeout: ${YSQL_LOGIN_TIMEOUT:0} # default 0s
-        connectTimeout: ${YSQL_CONNECT_TIMEOUT:15} # default 10s
-        socketTimeout: ${YSQL_SOCKET_TIMEOUT:10} # default 0s
-        options: ${YSQL_OPTIONS:-c statement_timeout=8s}
+        connectTimeout: ${YSQL_CONNECT_TIMEOUT:15} # 15s (default 10s)
+        socketTimeout: ${YSQL_SOCKET_TIMEOUT:10} # 10s (default 0s)
         prepareThreshold: ${YSQL_PREPARE_THRESHOLD:1}
+        options: ${YSQL_OPTIONS:-c statement_timeout=8s}
         additionalEndpoints: ${YSQL_ADDITIONAL_ENDPOINTS:127.0.0.2:5433,127.0.0.3:5433}
         load-balance: ${YSQL_LOAD_BALANCE:prefer‑primary}
         topology-keys: ${YSQL_TOPOLOGY_KEYS:gcp.us-east1.*:1,gcp.us-central1.*:2,gcp.us-west1.*:3}
@@ -45,11 +48,11 @@ spring:
   #          use_scrollable_resultset: true
   #          use_get_generated_keys: true
   flyway:
-    default-schema: ${DATABASE_SCHEMA:samples}
     user: ${FLYWAY_USERNAME:yugabyte}
     password: ${FLYWAY_PASSWORD:}
+    default-schema: ${DATABASE_SCHEMA:samples}
     baseline-on-migrate: ${FLYWAY_BASELINE_ON_MIGRATE:false}
-    mixed: true # non-transactional
+    mixed: true # YugabyteDB is non-transactional DDL
     placeholders:
       env: qa
       ybIndexMode: concurrently
@@ -61,9 +64,7 @@ spring:
     backoff-multiplier: ${YSQL_BACKOFF_MULTIPLIER_MS:8}
     backoff-max-interval: ${YSQL_BACKOFF_MAX_INTERVAL_MS:3000}
 
-server:
-  error:
-    include-stacktrace: never # override devtools behavior
+server.error.include-stacktrace: never # override devtools behavior
 
 # TODO copy/move most of these to local
 logging.level:

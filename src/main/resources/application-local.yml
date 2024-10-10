@@ -1,29 +1,23 @@
-###
-### Profile for use when doing local development.
-###
-### In IntelliJ, just add "local" to the Active Profiles of the Run/Debug
-### profile of the IDE.
-###
-
-# Add db/testing path for additional migration scripts, presumable for loading
-# repeatable test data.
-# Sets default user to local/local
+##
+## Profile for use in local development.
+##
+## In IntelliJ, just add "local" to the Active Profiles of the Run/Debug
+## profile of the IDE.
+##
+## - adds additional db/testing path for migration scripts, presumably for
+##   loading repeatable test data.
+## - sets default Spring Security user to local/localpwd
+##
 spring:
-  flyway:
-    locations: classpath:db/migration,classpath:db/testing
+  flyway.locations: classpath:db/migration,classpath:db/testing
   security:
     user:
       name: local
-      password: local
+      password: localpwd
 
-# Allow devtools to put full stack traces in REST response body (local only!)
-server:
-  error:
-    include-stacktrace: always
+# allows devtools to put full stack trace in REST response body (local use only!)
+server.error.include-stacktrace: always
 
-# Enable all Actuator endpoints when running locally
+# enable all actuator endpoints when running locally
 management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+  endpoints.web.exposure.include: ${MANAGEMENT_WEB_EXPOSURE_INCLUDE:*} # turn this off for PROD !!!
