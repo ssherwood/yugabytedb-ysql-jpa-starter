@@ -16,12 +16,8 @@ public class IntegrationTestExtension implements BeforeAllCallback, AfterAllCall
 
     static final YugabyteDBYSQLContainer ysqlDB = new YugabyteDBYSQLContainer(YUGABYTEDB_IMAGE)
             .withCommand(ENTRYPOINT)
-            //.withInitScript()
-            .withDatabaseName("yugabyte")
-            .withUsername("yugabyte")
-            .withPassword("yugabyte");
-            //.withReuse(true)
-            //.waitingFor(Wait.defaultWaitStrategy());
+            //.withInitScript() <- in case you want to provide an init script to set up the database
+            .withReuse(false);
 
     @Override
     public void beforeAll(ExtensionContext context) throws Exception {
