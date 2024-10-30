@@ -58,6 +58,7 @@ spring:
       ybIndexMode: concurrently
       deviceCount: 5000
       mediaPerDeviceCount: 60
+      jsonAsMapCount: 100000
   retry:
     max-attempts: ${YSQL_RETRY_MAX_ATTEMPTS:5}
     backoff-initial-interval: ${YSQL_BACKOFF_INIT_INTERVAL_MS:2}
