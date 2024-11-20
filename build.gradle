@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.3.4'
+    id 'org.springframework.boot' version '3.3.5'
     id 'io.spring.dependency-management' version '1.1.6'
 }
 
@@ -24,12 +24,12 @@ repositories {
 }
 
 ext {
-    set('flywayCoreVersion', '10.16.0')                // https://github.com/flyway/flyway
-    set('flywayDatabaseYugabyteDBVersion', '10.16.2')  // https://github.com/flyway/flyway-community-db-support
-    set('flywayTestExtensionsVersion', '10.0.0')       // https://github.com/flyway/flyway-test-extensions
-    set('hypersistenceUtilsVersion', '3.8.3')          // https://github.com/vladmihalcea/hypersistence-utils
-    set('testcontainersVersion', '1.20.2')             // https://github.com/testcontainers/testcontainers-java
-    set('yugabyteDriverVersion', '42.7.3-yb-1')        // https://github.com/yugabyte/pgjdbc
+    set('flyway.version', '10.16.0')                  // https://github.com/flyway/flyway
+    set('flywayTestExtensionsVersion', '10.0.0')      // https://github.com/flyway/flyway-test-extensions
+    set('flywayDatabaseYugabyteDBVersion', '10.16.2') // https://github.com/flyway/flyway-community-db-support
+    set('hypersistenceUtilsVersion', '3.8.3')         // https://github.com/vladmihalcea/hypersistence-utils
+    set('testcontainersVersion', '1.20.2')            // https://github.com/testcontainers/testcontainers-java
+    set('yugabyteDriverVersion', '42.7.3-yb-1')       // https://github.com/yugabyte/pgjdbc
 }
 
 dependencies {
@@ -42,7 +42,7 @@ dependencies {
     implementation 'org.springframework.retry:spring-retry'
     implementation 'org.springframework:spring-aspects'
     implementation "io.hypersistence:hypersistence-utils-hibernate-63:${hypersistenceUtilsVersion}"
-    implementation "org.flywaydb:flyway-core:${flywayCoreVersion}"
+    implementation "org.flywaydb:flyway-core"
     implementation "org.flywaydb:flyway-database-yugabytedb:${flywayDatabaseYugabyteDBVersion}"
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

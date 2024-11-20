@@ -26,7 +26,7 @@ public class JsonAsMapDomain {
 
     @Type(JsonType.class)
     @Column(columnDefinition = "jsonb")
-    private Map<String, String> properties = new HashMap<>();
+    private Map<String, String> metadata = new HashMap<>();
 
     private LocalDateTime createdDate;
 
@@ -58,11 +58,11 @@ public class JsonAsMapDomain {
         this.points = points;
     }
 
-    public Map<String, String> getProperties() {
-        return properties;
+    public Map<String, String> getMetadata() {
+        return metadata;
     }
 
-    public void setProperties(Map<String, String> properties) {
-        this.properties = properties;
+    public void setMetadata(Map<String, String> metadata) {
+        this.metadata = metadata;
     }
 }

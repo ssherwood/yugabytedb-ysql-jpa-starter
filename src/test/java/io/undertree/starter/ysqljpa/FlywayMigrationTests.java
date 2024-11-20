@@ -63,7 +63,7 @@ public class FlywayMigrationTests {
         // this should match the number of migration files in db/migration plus db/testing (as included above)
         // plus 1 if you have flyway creating the schema
         var migrationCount = template.queryForObject("select count(*) from flyway_schema_history where success = true", Integer.class);
-        assertThat(migrationCount, is(6));
+        assertThat(migrationCount, is(8));
 
         // for each matching migration file, confirm that it matches the flyway_schema_history checksum
         Arrays.stream(resourcePatternResolver.getResources("classpath*:db/**/V*.sql"))
