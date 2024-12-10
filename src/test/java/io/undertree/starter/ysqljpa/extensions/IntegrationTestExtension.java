@@ -11,7 +11,7 @@ import org.testcontainers.utility.DockerImageName;
  *
  */
 public class IntegrationTestExtension implements BeforeAllCallback, AfterAllCallback {
-    static final DockerImageName YUGABYTEDB_IMAGE = DockerImageName.parse("yugabytedb/yugabyte:2024.1.3.0-b105");
+    static final DockerImageName YUGABYTEDB_IMAGE = DockerImageName.parse("yugabytedb/yugabyte:2024.2.0.0-b145");
     static final String ENTRYPOINT = "bin/yugabyted start --background=false --tserver_flags=yb_enable_read_committed_isolation=true";
 
     static final YugabyteDBYSQLContainer ysqlDB = new YugabyteDBYSQLContainer(YUGABYTEDB_IMAGE)

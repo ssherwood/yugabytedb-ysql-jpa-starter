@@ -12,7 +12,8 @@ spring:
       minimum-idle: ${HIKARI_MINIMUM_IDLE:10} # always set min=max and idle=0
       maximum-pool-size: ${HIKARI_MAXIMUM_POOL_SIZE:10}
       idle-timeout: ${HIKARI_IDLE_TIMEOUT:0}
-      max-lifetime: ${HIKARI_MAX_LIFETIME:21600000} # 6h
+      # testing hikaricp 6.2.1 with 25% lifetime variance
+      #max-lifetime: ${HIKARI_MAX_LIFETIME:21600000} # 6h
       keepalive-time: ${HIKARI_KEEPALIVE_TIME:600000} # 10m
       auto-commit: ${HIKARI_AUTO_COMMIT:false}
       transaction-isolation: ${HIKARI_TRANSACTION_ISOLATION:TRANSACTION_READ_COMMITTED}
@@ -38,8 +39,6 @@ spring:
         use_sql_comments: ${HIBERNATE_USER_SQL_COMMENTS:false}
         order_inserts: ${HIBERNATE_ORDER_INSERTS:true}
         order_updates: ${HIBERNATE_ORDER_UPDATES:true}
-        #connection.handling_mode: ${HIBERNATE_CONNECTION_HANDLING_MODE:DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION}
-        # ^^^ TODO this breaks read only semantics see https://vladmihalcea.com/spring-transaction-connection-management/
   # todo explain why this section might be useful (see `ddl-auto: validate` causing complex startup queries)
   #        temp:
   #          use_jdbc_metadata_defaults: false <-- todo requires dialect to be specified
