@@ -1,0 +1,7 @@
+# profile for GCP multi-region deployment with primary deployment being east
+spring:
+  datasource:
+    hikari:
+      data-source-properties:
+        topology-keys: ${YSQL_TOPOLOGY_KEYS:gcp.us-east1.*:1,gcp.us-central1.*:2,gcp.us-west1.*:3}
+        fallback-to-topology-keys-only: ${YSQL_TOPOLOGY_FALLBACK_KEYS_ONLY:true}

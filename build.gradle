@@ -26,7 +26,7 @@ repositories {
 ext {
     // upgrade HikariCP to support better maxLifetime variance (see https://github.com/brettwooldridge/HikariCP/pull/2035)
     set('hikaricp.version', '6.2.1')                  // https://github.com/brettwooldridge/HikariCP
-    set('flyway.version', '10.17.3')                  // https://github.com/flyway/flyway
+    set('flyway.version', '10.22.0')                  // https://github.com/flyway/flyway
     set('flywayTestExtensionsVersion', '10.0.0')      // https://github.com/flyway/flyway-test-extensions
     set('flywayDatabaseYugabyteDBVersion', '10.17.0') // https://github.com/flyway/flyway-community-db-support
     set('hypersistenceUtilsVersion', '3.9.1')         // https://github.com/vladmihalcea/hypersistence-utils
